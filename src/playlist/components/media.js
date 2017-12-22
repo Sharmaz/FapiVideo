@@ -1,23 +1,32 @@
 import React, { Component } from 'react';
-import './media.css'
+import PropTypes from 'prop-types';
+import './media.css';
 
 class Media extends Component {
   render() {
+    const { title, author, image } = this.props;
+
     return (
       <div className="Media">
-        <div>
+        <div className="Media-cover">
           <img
-            src="./images/covers/bitcoin.jpg"
+            src={image}
             alt=""
             width={260}
             height={160}
           />
-          <h3>Video Title</h3>
-          <p>Video Description</p>
+          <h3 className="Media-title">{title}</h3>
+          <p className="Media-author">{author}</p>
         </div>
       </div>
     )
   }
+}
+
+Media.propTypes = {
+  image: PropTypes.string,
+  title: PropTypes.string,
+  author: PropTypes.string,
 }
 
 export default Media;
