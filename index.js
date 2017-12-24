@@ -1,5 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Media from './src/playlist/components/media.js';
+import { render } from 'react-dom';
+import Playlist from './src/playlist/components/playlist.js';
+import data from './src/api.json';
 
-ReactDOM.render(<Media title="¿Que es Bitcoin?" author="Ivan Robles" image="./images/covers/bitcoin.jpg"/>, app);
+const app = document.getElementById('app');
+
+render(<Playlist data={data} />, app);
