@@ -9,7 +9,7 @@ class Media extends Component {
     this.state = {
       author: props.author
     }
-  }*/
+  }
   state = {
     author: 'Ivan Robles'
   }
@@ -18,12 +18,12 @@ class Media extends Component {
     this.setState({
       author: 'Emmanuel Alonso'
     })
-  }
+  }*/
   render() {
     const { title, author, cover } = this.props;
 
     return (
-      <div className="Media" onClick={this.handleClick}>
+      <div className="Media" onClick={this.props.handleClick}>
         <div className="Media-cover">
           <img
             src={cover}
