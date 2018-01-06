@@ -9,6 +9,7 @@ import formattedTime from '../../libs/utilities';
 import ProgressBar from '../components/progress-bar';
 import Spinner from '../components/spinner';
 import Volume from '../components/volume';
+import FullScreen from '../components/full-screen';
 
 class VideoPlayer extends Component {
   state = {
@@ -71,10 +72,45 @@ class VideoPlayer extends Component {
     
     this.video.volume = this.state.lastVolume;
   }
+  handleFullScreenClick = (event) => {
+    /*
+    if(document.webkitIsFullScreen) {
+      document.webkitExitFullscreen();
+    }
+    else if(document.mozFullScreen) {
+      document.mozCancelFullScreen();
+    } 
+    else {
+      if (this.player.webkitRequestFullscreen) {
+        this.player.webkitRequestFullscreen();
+      } else if (this.player.mozRequestFullScreen) {
+        this.player.mozRequestFullScreen();
+      }
+    }*/
 
+    
+    if (document.mozFullScreen) {
+      document.mozCancelFullScreen();
+    }
+    else if (document.webkitIsFullScreen) {
+      document.webkitExitFullscreen();
+    }
+    else if (this.player.mozRequestFullScreen) {
+      this.player.mozRequestFullScreen();
+    }
+    else if (this.player.webkitRequestFullscreen) {
+      this.player.webkitRequestFullscreen(); 
+    }
+
+  }
+  setRef = (element) => {
+    this.player = element;
+  }
   render() {
     return (
-      <VideoPlayerLayout>
+      <VideoPlayerLayout
+        setRef={this.setRef}
+      >
         <Title
           title="Video Creative Commons"
         />
@@ -96,6 +132,9 @@ class VideoPlayer extends Component {
             handleVolumeChange={this.handleVolumeChange}
             handleVolumeClick={this.handleVolumeClick}
             value={this.state.volume}
+          />
+          <FullScreen 
+            handleFullScreenClick={this.handleFullScreenClick}
           />
         </Controls>
         <Spinner
