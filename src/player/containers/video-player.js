@@ -73,22 +73,7 @@ class VideoPlayer extends Component {
     this.video.volume = this.state.lastVolume;
   }
   handleFullScreenClick = (event) => {
-    /*
-    if(document.webkitIsFullScreen) {
-      document.webkitExitFullscreen();
-    }
-    else if(document.mozFullScreen) {
-      document.mozCancelFullScreen();
-    } 
-    else {
-      if (this.player.webkitRequestFullscreen) {
-        this.player.webkitRequestFullscreen();
-      } else if (this.player.mozRequestFullScreen) {
-        this.player.mozRequestFullScreen();
-      }
-    }*/
 
-    
     if (document.mozFullScreen) {
       document.mozCancelFullScreen();
     }
@@ -112,7 +97,7 @@ class VideoPlayer extends Component {
         setRef={this.setRef}
       >
         <Title
-          title="Video Creative Commons"
+          title={this.props.title}
         />
         <Controls>
           <PlayPause
@@ -147,7 +132,7 @@ class VideoPlayer extends Component {
           handleTimeUpdate={this.handleTimeUpdate}
           handleSeeking={this.handleSeeking}
           handleSeeked={this.handleSeeked}
-          src="http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4"
+          src={this.props.src}
         />
       </VideoPlayerLayout>
     );
